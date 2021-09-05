@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="no.uio.myapplication.MainActivity">
+    <item
+        android:id="@+id/action_uploadDB"
+        android:orderInCategory="100"
+        android:title="@string/action_upload_DB"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_showMyTrips"
+        android:orderInCategory="100"
+        android:title="@string/show_My_Trips"
+        app:showAsAction="always" />
+</menu>

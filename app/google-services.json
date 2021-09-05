@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "172401848928",
+    "firebase_url": "https://tmdetector-47a90-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "tmdetector-47a90",
+    "storage_bucket": "tmdetector-47a90.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172401848928:android:e696f4df026ae80fed0905",
+        "android_client_info": {
+          "package_name": "no.uio.testfs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172401848928-tubfrtkej049l0jk7o63sooiqag82e9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLKzFv5fZY4vyDTBgtGOZ6ul24ZAeJFRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172401848928-tubfrtkej049l0jk7o63sooiqag82e9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:172401848928:android:8a62dcebc0e3855fed0905",
+        "android_client_info": {
+          "package_name": "no.uio.tmdetector"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "172401848928-tubfrtkej049l0jk7o63sooiqag82e9c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLKzFv5fZY4vyDTBgtGOZ6ul24ZAeJFRA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "172401848928-tubfrtkej049l0jk7o63sooiqag82e9c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
