@@ -80,8 +80,7 @@ public class BackgroundTripStorage extends AsyncTask<Void, Void, Boolean> {
             MainActivity.rawDataDB.addData("", "", "", "", String.valueOf(tripId), "", "", "",
                     "", eventDate, String.valueOf(eventTimestamp), accX, accY, accZ, latitude, longitude,
                     accuracy, accMagnitude, magX, magY, magZ, magMagnitude, String.valueOf(location));
-           /* Log.d(TAG, " eventDate= " + eventDate + " accMagnitude= " + accMagnitude
-                    + " magMagnitude= " + magMagnitude + " location= " + location);*/
+
 
         }
 

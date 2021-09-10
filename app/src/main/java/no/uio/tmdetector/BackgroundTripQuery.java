@@ -1,35 +1,63 @@
 package no.uio.tmdetector;
 
-import android.content.Context;
 import android.database.Cursor;
-import android.location.Location;
 import android.os.AsyncTask;
-import android.util.Log;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 //********** the problem here is when I store the Location in the format of Location
 //I can not get them back in the same format....this does not cuase problem for generating another classifier
 //but it is problem when I want to fit the values on the classifier
 import static no.uio.tmdetector.MainActivity.rawDataDB;
 
-class BackgroundTripQuery extends AsyncTask<String, Void, List<Float> []> {
+/**
+ * This class do a background query based on the tripId and returns all the required columns of a trip
+ */
+class BackgroundTripQuery extends AsyncTask<String, Void, ArrayList<ArrayList<String>>> {
     private static final String TAG = BackgroundTripStorage.class.getSimpleName();
     private static final int segmentSize = 90;
+    private Cursor cursor;
+    ArrayList<ArrayList<String>> allValues = new ArrayList<>(); // the required columns
+    ArrayList<String> correctedModeOfTransports = new ArrayList<>(); //column 8
+    ArrayList<String> magMagnitudes = new ArrayList<>(); //column 21
 
 
     @Override
-    protected List<Float>[] doInBackground(String... params) {
-        // query the whole trip for segmentation
-
+    protected ArrayList<ArrayList<String>> doInBackground(String... params) {
         String tripId= params[0];
-        //Log.d(TAG,  "tripid" +tripId);
-        Cursor cursor = rawDataDB.showtripbyid(tripId);
-        List<Float>[] listOfMagSegments = null;
-
+        cursor = rawDataDB.showtripbyid(tripId);
         if (cursor.getCount() != 0) {
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                //get magnitude of magnetometer readings
+                magMagnitudes.add(cursor.getString(21));
+                //get the list of actual modes of the trip
+                    if (!cursor.getString(8).isEmpty()){
+                        correctedModeOfTransports.add(cursor.getString(8));
+                    }
+                }
+            allValues.add(magMagnitudes);
+            allValues.add(correctedModeOfTransports);
+            }
+
+        cursor.close();
+
+        return allValues;
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<ArrayList<String>> allValues) {
+        super.onPostExecute(allValues);
+
+        
+    }
+
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+
+}
+ /*if (cursor.getCount() != 0) {
             cursor.moveToFirst();
             long firstTimeStamp = cursor.getLong(10); //eventTimestamp column
             cursor.moveToLast();
@@ -71,25 +99,5 @@ class BackgroundTripQuery extends AsyncTask<String, Void, List<Float> []> {
               //  Classifier.getInstance().addLocation(listOfLocSegments[j]);
 
             }
-        }
+        }*/
 
-        cursor.close();
-
-        return listOfMagSegments;
-    }
-
-    @Override
-    protected void onPostExecute(List<Float>[] listOfAccSegments) {
-        super.onPostExecute(listOfAccSegments);
-
-        
-    }
-
-
-
-    @Override
-    protected void onPreExecute() {
-        super.onPreExecute();
-    }
-
-}

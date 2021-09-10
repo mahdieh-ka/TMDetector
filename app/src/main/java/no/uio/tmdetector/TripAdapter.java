@@ -3,8 +3,6 @@ package no.uio.tmdetector;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,17 +12,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.RecyclerView;
-
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
+
 
 
 /**
@@ -61,10 +54,14 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         DateFormat dateFormatter = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.MEDIUM);
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 
+
+
+
         viewHolder.txtStart.setText(dateFormatter.format(trip.getStartDate()));
         viewHolder.txtEnd.setText(dateFormatter.format(trip.getEndDate()));
         //viewHolder.txtDistance.setText(trip.getDistance() + " m");
         viewHolder.txtTripId.setText(trip.getTripId() + " ");
+
 
 
         ImageView tripIcon = viewHolder.tripIcon;
@@ -157,7 +154,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             //convert legs to string
             StringBuffer buffer_legs = new StringBuffer();
             for (Leg tripLeg: trip.getLegs()){
-                buffer_legs.append("Leg_Mode = " + tripLeg.getModeId() + "    Start= " + sdf.format(tripLeg.getStartTime()) + "    "+"End= " +sdf.format(tripLeg.getEndTime()) +"\n");
+                String legMode = Utility.modeIntegerToString(tripLeg.getModeId());
+                buffer_legs.append("Leg_Mode = " + legMode + "    Start= " + sdf.format(tripLeg.getStartTime()) + "    "+"End= " +sdf.format(tripLeg.getEndTime()) +"\n");
 
 
             }
@@ -168,7 +166,8 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
             if (trip.getSegments() != null) {
                 for (Segment tripSegment: trip.getSegments()) {
-                    buffer_segments.append("Segment = " + tripSegment.getIndex()+ "   " +"  Tag = " + tripSegment.getTag()+ "  "+"Mode = " + tripSegment.getModeId()+ "   " +
+                    String segMode = Utility.modeIntegerToString(tripSegment.getModeId());
+                    buffer_segments.append("Segment = " + tripSegment.getIndex()+ "   " +"  Tag = " + tripSegment.getTag()+ "  "+"Mode = " + segMode+ "   " +
                             "     Start= " + sdf.format(tripSegment.getStartTime())  + "   End=" + sdf.format(tripSegment.getEndTime()) +
                             "   Distance= " +tripSegment.getDistance()+ "  Probabilities=" +tripSegment.getListOfProbabilities().toString() + "\n\n");
                     Log.d(TAG, " Probabilities in Trip Adapter="+tripSegment.getListOfProbabilities());

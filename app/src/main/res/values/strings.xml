@@ -29,7 +29,7 @@
     <string name="tripid">TripId</string>
     <string name="distance">Distance</string>
     <string name="list_of_legs">list Of Legs</string>
-    <string name="listOfProbs">list Of Probabilities(0 = still, 1 = bike, 15 = bus, 7 = walk, 9 = car, 10 = train)</string>
+    <string name="listOfProbs">list Of Probabilities</string>
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

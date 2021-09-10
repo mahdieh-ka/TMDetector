@@ -335,7 +335,8 @@ public class DerivativeGraph extends AppCompatActivity {
         for (int i =0 ; i < modeSegments.size(); i++){
             for (int k =0 ; k < modeSegments.get(i).size() ;k++ ){
                 if (!modeSegments.get(i).get(k).isEmpty()){
-                    actualModes.add(modeSegments.get(i).get(k));
+
+                    actualModes.add(Utility.modeIntegerToString(Integer.valueOf(modeSegments.get(i).get(k))));
                 }
             }
         }
