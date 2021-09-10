@@ -12,6 +12,7 @@ public class Leg implements Comparable<Leg>{
     private long endTime;
     private int modeId;
 
+
     private List<Segment> legSegments;
 
 

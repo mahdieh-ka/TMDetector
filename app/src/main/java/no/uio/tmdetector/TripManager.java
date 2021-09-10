@@ -147,8 +147,10 @@ public class TripManager {
         else{ tripId =0; }
         //increase the tripId to store the new data with the new Id
         ++tripId;
+        cursor.close();
 
     }
+
 
     /**
      * Stops recording a trip

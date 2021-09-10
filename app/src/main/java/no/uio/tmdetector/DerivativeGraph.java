@@ -28,6 +28,7 @@ public class DerivativeGraph extends AppCompatActivity {
     private String TAG = DerivativeGraph.class.getSimpleName();
     String tripId;
     Cursor cursor;
+    private BackgroundTripQuery backgroundTripQuery = new BackgroundTripQuery();
 
 
     private static final int segmentSize = 90;

@@ -36,10 +36,10 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
     private static Bundle bundle = new Bundle();
     public static String selectedMode ;
     String selectiveItem;
-    public static List<String> actualModes = new ArrayList<>();
     private List<Trip> tripsList = new ArrayList<>();
     private TripAdapter mAdapter;
     public RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -233,7 +233,6 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
 
         if (selectiveItem == "mode") {
             selectedMode = list[position];
-            actualModes.add(selectedMode);
             Toast.makeText(getApplicationContext() , selectedMode , Toast.LENGTH_SHORT).show();
 
             boolean isUpdate = MainActivity.rawDataDB.updateData(selectedMode, id);

@@ -2,6 +2,7 @@ package no.uio.tmdetector;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,9 +16,11 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.RecyclerView;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static no.uio.tmdetector.MainActivity.rawDataDB;
 
 
 /**
@@ -28,6 +31,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
     private static final String TAG = TripAdapter.class.getSimpleName() ;
     private List<Trip> tripsList;
     private Context context;
+    private Cursor cursor;
 
 
     TripAdapter(List<Trip> tripsList) {
@@ -56,11 +60,10 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
 
 
-
         viewHolder.txtStart.setText(dateFormatter.format(trip.getStartDate()));
         viewHolder.txtEnd.setText(dateFormatter.format(trip.getEndDate()));
-        //viewHolder.txtDistance.setText(trip.getDistance() + " m");
         viewHolder.txtTripId.setText(trip.getTripId() + " ");
+        viewHolder.txtActualMode.setText(retrieveActualModes(trip));
 
 
 
@@ -113,7 +116,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             //delete from repository
             TripRepository.delete(trip.getId());
             //delete from the local database
-            MainActivity.rawDataDB.deleteByTripId(String.valueOf(trip.getTripId()));
+            rawDataDB.deleteByTripId(String.valueOf(trip.getTripId()));
             TripRepository.fetch(v.getContext());
 
         });
@@ -191,7 +194,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
     class TripViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtStart, txtEnd, txtTripId;
+        TextView txtStart, txtEnd, txtTripId , txtActualMode;
         ImageView tripIcon;
         ImageButton btnDelete;
         Button btnPredictedMode, btnShowGraphs ;
@@ -201,6 +204,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             txtStart = itemView.findViewById(R.id.txtStart);
             txtEnd = itemView.findViewById(R.id.txtEnd);
             txtTripId=itemView.findViewById(R.id.txtTripId);
+            txtActualMode = itemView.findViewById(R.id.txtActualMode);
             tripIcon = itemView.findViewById(R.id.imgViewMode);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnShowGraphs = itemView.findViewById(R.id.btnShowGraphs);
@@ -209,5 +213,27 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
         }
 
+    }
+
+    private StringBuffer retrieveActualModes(Trip trip){
+        ArrayList<String> modes = new ArrayList<>();
+
+        //get the actual mode of the current trip from the local DB and set to the viewHolder
+        cursor = rawDataDB.showtripbyid(String.valueOf(trip.getTripId()));
+        if (cursor.getCount() != 0) {
+            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                //get the list of actual modes of the trip
+                if (!cursor.getString(8).isEmpty()) {
+                    modes.add(cursor.getString(8));
+                }
+            }
+        }
+        cursor.close();
+        StringBuffer buffer_modes = new StringBuffer();
+        for (String mode: modes) {
+            String strMode = Utility.modeIntegerToString(Integer.valueOf(mode));
+            buffer_modes.append(strMode + " ");
+        }
+        return buffer_modes;
     }
 }
