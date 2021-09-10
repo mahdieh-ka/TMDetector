@@ -164,6 +164,7 @@ class Utility {
                 Math.pow(sensorEvent.values[2], 2));
     }
 
+
     //calculate derivative of a list of float values
     public static List<Float> calculateDerivative(List<Float> values) {
         List<Float> result = new ArrayList<>();
@@ -177,6 +178,19 @@ class Utility {
 
     }
 
+    //normalize data
+    public static ArrayList<Float> normalizeDate(ArrayList<Float> magSegment){
+        float maxValue , minValue;
+        ArrayList<Float> normValues = new ArrayList<>();
+        maxValue = getMax(magSegment);
+        minValue = getMin(magSegment);
+        for (int i=0 ; i < magSegment.size() ; i++){
+            float normValue;
+            normValue = ((magSegment.get(i) - minValue) / (maxValue - minValue));
+            normValues.add(normValue);
+        }
+        return normValues;
+    }
 
 
     // Returns the user friendly smartphone name
@@ -401,6 +415,8 @@ class Utility {
 
         return mode;
     }
+
+
 
 }
 

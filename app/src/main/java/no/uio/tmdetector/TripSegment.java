@@ -59,7 +59,7 @@ class TripSegment {
         long startTime = time;
         int i = 1;
 
-        //A segment including accelerometer values between  90 seconds
+        //A segment includes accelerometer values between  90 seconds
          listOfSegments = new LinkedList<>();
         //inner ArrayList
         ArrayList<Float> accValues = new ArrayList<>();
@@ -189,7 +189,12 @@ class TripSegment {
             }
 
         }
+
+
+
         for (int j = 0; j < listOfSegments.size(); j++) {
+            //normalize the data
+            listOfSegments.get(j).setMagSegment(Utility.normalizeDate(listOfSegments.get(j).getMagSegment()));;
             Log.d(TAG, "MagSegment=" + listOfSegments.get(j).getMagSegment());
         }
 
