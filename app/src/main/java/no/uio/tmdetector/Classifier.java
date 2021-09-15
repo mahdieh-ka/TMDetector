@@ -288,7 +288,7 @@ class Classifier {
         features.put("stdDevAcc", Utility.getStandardDeviation(accuracies));
         features.put("gpsTimeMean", Utility.getMean(gpsTimeDiffs));
 
-        if(!rawLocationsSegment.isEmpty()) { rawLocationsSegment.clear(); }
+        if(rawLocationsSegment != null) { rawLocationsSegment.clear(); }
         rawAccelerationsSegment.clear();
     }
 

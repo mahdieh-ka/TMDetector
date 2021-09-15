@@ -406,6 +406,7 @@ class Utility {
                 break;
             case 15:
                 mode = "bus";
+                break;
             case 16:
                 mode = "other";
                 break;

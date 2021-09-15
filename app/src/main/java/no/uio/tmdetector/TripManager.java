@@ -1,6 +1,8 @@
 package no.uio.tmdetector;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -10,6 +12,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.os.Looper;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
@@ -62,24 +66,24 @@ public class TripManager {
      * time constant - 5 minutes in milliseconds - time within a tripDistance limit to go from trip
      * to waiting event
      */
-    int tripTimeLimit = 5*60;
+    int tripTimeLimit = 5 * 60;
 
     /**
      * time constant - 25 minutes in milliseconds - time within a tripDistance limit to go from
      * waiting event state to still state (end of trip)
      */
-    int fullTripTimeLimit = 25*60*1000;
+    int fullTripTimeLimit = 25 * 60 * 1000;
 
     /**
      * time constant - 30 minutes in milliseconds - time interval which a recovered trip snapshot is
      * considered to be valid.
      */
-    final int tripSnapshotFreshTime = 30*60*1000;
+    final int tripSnapshotFreshTime = 30 * 60 * 1000;
 
     private static String TAG = "TripManager";
     private SensorManager sensorManager;
     private AccListener accelerationListener;
-    private Sensor accelerometer,magnetometer;
+    private Sensor accelerometer, magnetometer;
     private MagListener magnetometerListener;
     private FusedLocationProviderClient locationProviderClient;
     private LocationRequest locationRequest;
@@ -92,9 +96,6 @@ public class TripManager {
     private long startTime;
     float predictedDistance;
     DetectionActivity detectionActivity = new DetectionActivity();
-
-
-
 
 
     TripManager(Context context) {
@@ -112,20 +113,19 @@ public class TripManager {
         locationRequest = new LocationRequest();
         locationRequest.setInterval(GPS_SAMPLING_INTERVAL);
         locationRequest.setMaxWaitTime(GPS_SAMPLING_INTERVAL);
+        locationRequest.setPriority(locationRequest.PRIORITY_HIGH_ACCURACY);
         // callback to receive location updates
         locationCallback = new LocationListener();
     }
-
-
 
 
     /**
      * Starts recording a trip
      */
     void startTrip() {
-        sensorManager.registerListener(accelerationListener,accelerometer, (int) ACCEL_SAMPLING_PERIOD, (int) ACCEL_SAMPLING_PERIOD);
+        sensorManager.registerListener(accelerationListener, accelerometer, (int) ACCEL_SAMPLING_PERIOD, (int) ACCEL_SAMPLING_PERIOD);
         Log.d(TAG, "Started accelerometer");
-        sensorManager.registerListener(magnetometerListener,magnetometer,(int) ACCEL_SAMPLING_PERIOD, (int) ACCEL_SAMPLING_PERIOD);
+        sensorManager.registerListener(magnetometerListener, magnetometer, (int) ACCEL_SAMPLING_PERIOD, (int) ACCEL_SAMPLING_PERIOD);
         Log.d(TAG, "Started magnetometer");
         locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper());
 

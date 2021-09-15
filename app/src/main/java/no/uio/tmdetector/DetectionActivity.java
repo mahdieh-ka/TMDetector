@@ -16,6 +16,7 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,6 +40,7 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
     private List<Trip> tripsList = new ArrayList<>();
     private TripAdapter mAdapter;
     public RecyclerView recyclerView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
