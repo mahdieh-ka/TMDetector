@@ -12,13 +12,16 @@ import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -100,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                         authFeedback.setText("Signed in Anonymously");
                         Toast.makeText(MainActivity.this , R.string.txtDescription , Toast.LENGTH_LONG).show();
 
+
                     }
                     else {
                         authFeedback.setText("There is an error signing in");
@@ -109,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
         linkUserAccount();
+        locationStatusCheck();
     }
 
     @Override
@@ -183,6 +188,36 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+
+
+    public void locationStatusCheck() {
+        final LocationManager manager = (LocationManager) getSystemService(LOCATION_SERVICE);
+
+        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            buildAlertMessageNoGps();
+
+        }
+    }
+
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, final int id) {
+                        dialog.cancel();
+                        Toast.makeText(MainActivity.this, "Your data is not valid without GPS!", Toast.LENGTH_LONG).show();
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
 
     //drop table (for testing purposes)

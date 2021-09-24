@@ -64,7 +64,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
         viewHolder.txtEnd.setText(dateFormatter.format(trip.getEndDate()));
         viewHolder.txtTripId.setText(trip.getTripId() + " ");
         viewHolder.txtActualMode.setText(retrieveActualModes(trip));
-
+        viewHolder.txtPredictedMode.setText(convertPredictedModesToString(trip));
 
 
         ImageView tripIcon = viewHolder.tripIcon;
@@ -151,9 +151,6 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             Collections.sort(trip.getLegs(), (l1, l2) -> Long.compare(l1.getStartTime() , l2.getStartTime()));
 
 
-
-
-
             //convert legs to string
             StringBuffer buffer_legs = new StringBuffer();
             for (Leg tripLeg: trip.getLegs()){
@@ -194,7 +191,7 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
 
     class TripViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtStart, txtEnd, txtTripId , txtActualMode;
+        TextView txtStart, txtEnd, txtTripId , txtActualMode, txtPredictedMode;
         ImageView tripIcon;
         ImageButton btnDelete;
         Button btnPredictedMode, btnShowGraphs ;
@@ -205,35 +202,49 @@ public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder
             txtEnd = itemView.findViewById(R.id.txtEnd);
             txtTripId=itemView.findViewById(R.id.txtTripId);
             txtActualMode = itemView.findViewById(R.id.txtActualMode);
+            txtPredictedMode = itemView.findViewById(R.id.txtPredictedMode);
             tripIcon = itemView.findViewById(R.id.imgViewMode);
             btnDelete = itemView.findViewById(R.id.btnDelete);
             btnShowGraphs = itemView.findViewById(R.id.btnShowGraphs);
             btnPredictedMode = itemView.findViewById(R.id.btnPredictedMode);
 
-
         }
 
     }
 
+    //retrive the atual mode of each trip from the local database
     private StringBuffer retrieveActualModes(Trip trip){
         ArrayList<String> modes = new ArrayList<>();
-
-        //get the actual mode of the current trip from the local DB and set to the viewHolder
-        cursor = rawDataDB.showtripbyid(String.valueOf(trip.getTripId()));
-        if (cursor.getCount() != 0) {
-            for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
-                //get the list of actual modes of the trip
-                if (!cursor.getString(8).isEmpty()) {
-                    modes.add(cursor.getString(8));
+        if (trip != null) {
+            //get the actual mode of the current trip from the local DB and set to the viewHolder
+            cursor = rawDataDB.showtripbyid(String.valueOf(trip.getTripId()));
+            if (cursor.getCount() != 0) {
+                for (cursor.moveToFirst(); !cursor.isAfterLast(); cursor.moveToNext()) {
+                    //get the list of actual modes of the trip
+                    if (!cursor.getString(8).isEmpty()) {
+                        modes.add(cursor.getString(8));
+                    }
                 }
             }
         }
         cursor.close();
         StringBuffer buffer_modes = new StringBuffer();
-        for (String mode: modes) {
+        for (String mode : modes) {
             String strMode = Utility.modeIntegerToString(Integer.valueOf(mode));
             buffer_modes.append(strMode + " ");
         }
+
+
         return buffer_modes;
     }
+
+   private StringBuffer convertPredictedModesToString(Trip trip){
+       StringBuffer buffer_predictedModes = new StringBuffer();
+       for (Leg tripLeg: trip.getLegs()){
+           String legMode = Utility.modeIntegerToString(tripLeg.getModeId());
+           buffer_predictedModes.append(legMode + " ");
+       }
+       return buffer_predictedModes;
+   }
+
 }

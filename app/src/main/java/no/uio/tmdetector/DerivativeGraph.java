@@ -28,7 +28,9 @@ public class DerivativeGraph extends AppCompatActivity {
     private String TAG = DerivativeGraph.class.getSimpleName();
     String tripId;
     Cursor cursor;
+    ProgressDialog progressDialog;
     private BackgroundTripQuery backgroundTripQuery = new BackgroundTripQuery();
+
 
 
     private static final int segmentSize = 90;
@@ -71,9 +73,17 @@ public class DerivativeGraph extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        if (progressDialog != null && progressDialog.isShowing()== true) {
+            progressDialog.dismiss();
+        }
+        super.onDestroy();
+    }
+
     private class BackgroundTask extends AsyncTask<Void, Void, ArrayList<LineData>> {
 
-        ProgressDialog progressDialog;
+
 
         @Override
         protected ArrayList<LineData> doInBackground(Void... voids) {
@@ -95,7 +105,9 @@ public class DerivativeGraph extends AppCompatActivity {
         @Override
         protected void onPostExecute(ArrayList<LineData> lineData) {
 
-            progressDialog.dismiss();
+            if (progressDialog != null && progressDialog.isShowing()== true) {
+                progressDialog.dismiss();
+            }
             //raw magnetometer of magnitude values
             chartRawMag.setData(lineData.get(0));
             chartRawMag.getDescription().setEnabled(true);
