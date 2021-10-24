@@ -1,4 +1,8 @@
 # TMDetector
+To download the app ask for permision from bahar.kamalian@gmail.com 
+download the app from https://drive.google.com/drive/folders/1CVdQ9_LekB7zn33HsRhsKNMNc5Kor0sr?usp=sharing
+
+
 The app contains two different modules:
 1- Recording module: A module to record ground truth for generating a new classifier 
 2- Detection module: A module using the Woorti classifier to detect the users modes. 
