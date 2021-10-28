@@ -1,4 +1,9 @@
-# TMDetector
+# Mahdieh Kamalian(TMDetector)
+https://www.mn.uio.no/ifi/english/people/aca/mahdiehk/
+
+
+
+
 To download the app ask for permision from bahar.kamalian@gmail.com 
 download the app from https://drive.google.com/drive/folders/1CVdQ9_LekB7zn33HsRhsKNMNc5Kor0sr?usp=sharing
 
