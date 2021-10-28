@@ -1,5 +1,6 @@
 # TMDetector
 about the developer and author : 
+My name is Mahdieh Kamalian. For more information about me please check the following link.
 https://www.mn.uio.no/ifi/english/people/aca/mahdiehk/
 
 
