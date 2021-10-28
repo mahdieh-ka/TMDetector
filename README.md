@@ -1,11 +1,12 @@
 # TMDetector
-about Me : 
+about the developer and author : 
 https://www.mn.uio.no/ifi/english/people/aca/mahdiehk/
 
 
 Where to find the app?
 
 To download the app ask for permision from bahar.kamalian@gmail.com 
+
 download the app from https://drive.google.com/drive/folders/1CVdQ9_LekB7zn33HsRhsKNMNc5Kor0sr?usp=sharing
 
 
@@ -19,7 +20,9 @@ The app uses three different sensors including GPS, accelerometer and magnetomet
 Detection module:
 Detection module segmentize data with the window size of 90 seconds, sent the segments to classifier and generate a list of the probabilities for 6 mode classes: still, walk, bike, car, bus, train. Then it merges the segments with a post-processing phase for missclassification correction. 
 
-Post-processing phase
+Post-processing phases
+
+
 Post-processing phase first step:
 add a tag to each segment based on the tagging method. 
 Tagging method tag the segments of a Trip to Strong, Candidate or Separation
