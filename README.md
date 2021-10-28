@@ -12,7 +12,9 @@ download the app from https://drive.google.com/drive/folders/1CVdQ9_LekB7zn33HsR
 
 
 The app contains two different modules:
-1- Recording module: A module to record ground truth for generating a new classifier 
+
+1- Recording module: A module to record ground truth for generating a new classifier.
+
 2- Detection module: A module using the Woorti classifier to detect the users modes. 
 
 Recording module:
