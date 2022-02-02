@@ -74,13 +74,38 @@ public class SingleChoiceDialogFragment extends DialogFragment {
                     });
         }
 
+        else if (selectiveItem =="city") {
+            final String[] cityList = getActivity().getResources().getStringArray(R.array.cities);
+            builder.setTitle("Select the city:").setSingleChoiceItems(cityList, position, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    position = which;
+                }
+            })
+                    .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mListener.onPositiveButtonClicked(cityList, position , "city",tripId);
+
+
+                        }
+                    })
+
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mListener.onNegativeButtonClicked("city");
+                        }
+                    });
+        }
+
 
         return builder.create();
 
 
     }
 
-    public int setPosition(String lastUsedMode) {
+    /*public int setPosition(String lastUsedMode) {
         int position = 0;
 
         switch (lastUsedMode) {
@@ -124,5 +149,5 @@ public class SingleChoiceDialogFragment extends DialogFragment {
                 break;
         }
         return position;
-    }
+    }*/
 }

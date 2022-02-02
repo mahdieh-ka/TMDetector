@@ -1,7 +1,8 @@
 <resources>
-    <string name="app_name">TMDetector1.1.10</string>
+    <string name="app_name">TMDetector1.2.10</string>
     <string name="show_triplist">Show TripList</string>
     <string name="actual_mode">Actual Mode</string>
+    <string name="city">City</string>
     <string name="predicted_mode">Predicted Mode</string>
     <string name="show_derivative">Show derivative</string>
     <string-array name="modes">
@@ -17,6 +18,22 @@
         <item>plain</item>
         <item>bus</item>
         <item>other</item>
+    </string-array>
+
+    <string-array name="cities">
+        <item>Oslo</item>
+        <item>Lisbon</item>
+        <item>Rome</item>
+        <item>London</item>
+        <item>Berlin</item>
+        <item>Munich</item>
+    </string-array>
+
+    <string-array name="roadConditions">
+        <item>Asphalt</item>
+        <item>Gravel road</item>
+        <item>cobblestone</item>
+        <item>granites setts</item>
     </string-array>
     <string name="action_upload_DB">Upload DB</string>
     <string name="dbNameHint">Enter DB name</string>

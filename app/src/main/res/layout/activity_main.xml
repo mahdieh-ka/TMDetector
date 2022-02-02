@@ -35,7 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:srcCompat="@mipmap/ic_tmd" />
+        app:srcCompat="@mipmap/ic_tmdetector" />
 
 
     <TextView

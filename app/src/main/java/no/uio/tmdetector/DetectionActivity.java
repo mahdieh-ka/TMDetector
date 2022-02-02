@@ -33,9 +33,9 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
     private Intent backgroundServiceIntent;
     public static final String CHANNEL_ID = "DetectionActivityNotificationChannel";
     public ToggleButton toggleBtnTrip;
-    private Button btnActualMode;
+    private Button btnActualMode, btnCity;
     private static Bundle bundle = new Bundle();
-    public static String selectedMode ;
+    public static String selectedMode, selectedCity ;
     String selectiveItem;
     private List<Trip> tripsList = new ArrayList<>();
     private TripAdapter mAdapter;
@@ -69,7 +69,9 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
         Classifier.setContext(this);
         toggleBtnTrip = (ToggleButton) findViewById(R.id.tglBtnTrip);
         btnActualMode = (Button) findViewById(R.id.btnActualMode);
+        btnCity = (Button) findViewById(R.id.btnCity);
         selectTripMode();
+        selectTripCity();
 
 
         // Get required permissions
@@ -232,7 +234,7 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
 
     @Override
     public void onPositiveButtonClicked(String[] list, int position, String selectiveItem , String id) {
-
+        //if choosing between modes
         if (selectiveItem == "mode") {
             selectedMode = list[position];
             Toast.makeText(getApplicationContext() , selectedMode , Toast.LENGTH_SHORT).show();
@@ -241,6 +243,12 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
             if (isUpdate == true && selectedMode != null) {
                 Log.d(TAG, "Data updated!");
             }
+        }
+
+        //if choosing between cities
+        if (selectiveItem == "city") {
+            selectedCity = list[position];
+            Toast.makeText(getApplicationContext(), selectedCity, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -251,7 +259,33 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
             toast.show();
             selectedMode = null;
         }
+
+        if (selectiveItem == "city"){
+            Toast toast = Toast.makeText(DetectionActivity.this , "you should select the city!", Toast.LENGTH_SHORT);
+            toast.show();
+            selectedCity = null;
+        }
+
     }
+
+
+    // Select mode of the current trip
+    public void selectTripCity(){
+        btnCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectiveItem = "city";
+                DialogFragment modeSelection = new SingleChoiceDialogFragment(selectiveItem);
+                modeSelection.setCancelable(false);
+                modeSelection.show(getSupportFragmentManager(), "City selection");
+
+
+            }
+        });
+    }
+
+
+
 
 
 }
