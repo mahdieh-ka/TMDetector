@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TMDetector1.2.10</string>
+    <string name="app_name">TMDetector1.2.1</string>
     <string name="show_triplist">Show TripList</string>
     <string name="actual_mode">Actual Mode</string>
     <string name="city">City</string>
