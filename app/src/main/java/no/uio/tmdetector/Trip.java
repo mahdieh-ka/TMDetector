@@ -1,6 +1,9 @@
 package no.uio.tmdetector;
 
 import android.location.Location;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -24,9 +27,11 @@ import java.util.Map;
     private Long startDateTs;
 
 
+
      void start() {
         this.startDate = new Date();
-        this.startDateTs = Instant.now().toEpochMilli();;
+        this.startDateTs = Instant.now().toEpochMilli();
+
         inProgress = true;
     }
 

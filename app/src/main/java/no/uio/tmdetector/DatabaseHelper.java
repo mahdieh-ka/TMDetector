@@ -38,7 +38,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL21 = "magZ";
     public static final String COL22 = "magMagnitude";
     public static final String COL23 = "location";
-    public static final String COL24 = "city";
+
 
 
     public DatabaseHelper(@Nullable Context context) {
@@ -50,7 +50,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTable= "CREATE TABLE " + TABLE_NAME+ "(tripStartDate TEXT,legStartDate TEXT, tripStartDateTs TEXT, legStartDateTs TEXT, tripId TEXT , legId TEXT , OS TEXT, " +
                 "activityDetected TEXT ,correctedModeOfTransport TEXT, eventDate TEXT, eventTimestamp TEXT, x TEXT ,y TEXT, z TEXT, lat TEXT , lon TEXT , acc TEXT ,accMagnitude TEXT, magX TEXT, " +
-                "magY TEXT,magZ TEXT, magMagnitude TEXT, location TEXT, CITY TEXT )" ;
+                "magY TEXT,magZ TEXT, magMagnitude TEXT, location TEXT)" ;
         db.execSQL(createTable);
 
     }
@@ -66,7 +66,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     //insert data to the database
     public boolean addData(String tripStartDate , String legStartDate, String tripStartDateTs , String legStartDateTs , String tripId , String legId,
                            String OS , String activityDetected , String correctedModeOfTransport , String eventDate , String eventTimestamp , String x, String y ,
-                           String z , String lat , String lon, String acc , String accMagnitude , String magX , String magY , String magZ , String magMagnitude , String location , String city ){
+                           String z , String lat , String lon, String acc , String accMagnitude , String magX , String magY , String magZ , String magMagnitude , String location ){
         SQLiteDatabase db = getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL1, tripStartDate);
@@ -92,7 +92,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL21, magZ);
         contentValues.put(COL22, magMagnitude);
         contentValues.put(COL23, location);
-        contentValues.put(COL24, city);
+
 
 
         long result = db.insert(TABLE_NAME , null , contentValues);
@@ -144,7 +144,7 @@ class DatabaseHelper extends SQLiteOpenHelper {
     //upgrade the database
     public void upgrade(){
         SQLiteDatabase db = getWritableDatabase();
-        onUpgrade(db, 3,4);
+        onUpgrade(db, 4,5);
     }
 
     //delete rows (test purposes)

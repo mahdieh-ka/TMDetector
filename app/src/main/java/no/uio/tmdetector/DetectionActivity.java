@@ -33,9 +33,9 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
     private Intent backgroundServiceIntent;
     public static final String CHANNEL_ID = "DetectionActivityNotificationChannel";
     public ToggleButton toggleBtnTrip;
-    private Button btnActualMode, btnCity;
+    private Button btnActualMode;
     private static Bundle bundle = new Bundle();
-    public static String selectedMode, selectedCity ;
+    public static String selectedMode ;
     String selectiveItem;
     private List<Trip> tripsList = new ArrayList<>();
     private TripAdapter mAdapter;
@@ -69,9 +69,7 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
         Classifier.setContext(this);
         toggleBtnTrip = (ToggleButton) findViewById(R.id.tglBtnTrip);
         btnActualMode = (Button) findViewById(R.id.btnActualMode);
-        btnCity = (Button) findViewById(R.id.btnCity);
         selectTripMode();
-        selectTripCity();
 
 
         // Get required permissions
@@ -245,11 +243,7 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
             }
         }
 
-        //if choosing between cities
-        if (selectiveItem == "city") {
-            selectedCity = list[position];
-            Toast.makeText(getApplicationContext(), selectedCity, Toast.LENGTH_SHORT).show();
-        }
+
     }
 
     @Override
@@ -260,32 +254,7 @@ public class DetectionActivity extends AppCompatActivity implements SingleChoice
             selectedMode = null;
         }
 
-        if (selectiveItem == "city"){
-            Toast toast = Toast.makeText(DetectionActivity.this , "you should select the city!", Toast.LENGTH_SHORT);
-            toast.show();
-            selectedCity = null;
-        }
-
     }
-
-
-    // Select mode of the current trip
-    public void selectTripCity(){
-        btnCity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectiveItem = "city";
-                DialogFragment modeSelection = new SingleChoiceDialogFragment(selectiveItem);
-                modeSelection.setCancelable(false);
-                modeSelection.show(getSupportFragmentManager(), "City selection");
-
-
-            }
-        });
-    }
-
-
-
 
 
 }

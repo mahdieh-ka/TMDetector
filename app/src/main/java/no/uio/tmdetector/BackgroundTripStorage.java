@@ -17,7 +17,6 @@ public class BackgroundTripStorage extends AsyncTask<Void, Void, Boolean> {
     private Location location;
     private int tripId;
     public static int correctedModeOfTransport,previousSelectedMode, legId , previousTripId;
-    public static String city;
     private AccListener accListener;
     private MagListener magListener;
     private TripManager tripManager;
@@ -71,16 +70,16 @@ public class BackgroundTripStorage extends AsyncTask<Void, Void, Boolean> {
             legStartDateTs = timestamp;
             MainActivity.rawDataDB.addData(tripStartDate,legStartDate, String.valueOf(tripStartDateTs), String.valueOf(legStartDateTs), String.valueOf(tripId),
                     String.valueOf(legId), OS, null, String.valueOf(correctedModeOfTransport), eventDate, String.valueOf(eventTimestamp),
-                    accX, accY, accZ, latitude, longitude, accuracy, accMagnitude, magX, magY, magZ, magMagnitude, String.valueOf(location),city);
+                    accX, accY, accZ, latitude, longitude, accuracy, accMagnitude, magX, magY, magZ, magMagnitude, String.valueOf(location));
             Log.d(TAG, "tripStartDate= "+ tripStartDate + "legStartDate= " + legStartDate + " tripId= " + tripId + " legId= " + legId +
                     " OS= " + OS + " correctedModeOfTransport= " + correctedModeOfTransport + " eventDate= " + eventDate + " accMagnitude= " + accMagnitude
-                    + " magMagnitude= " + magMagnitude + " location= " + location + "city=" +city);
+                    + " magMagnitude= " + magMagnitude + " location= " + location );
             Log.d(TAG, "---------------------------------------------------- ");
         }
         else{
             MainActivity.rawDataDB.addData("", "", "", "", String.valueOf(tripId), "", "", "",
                     "", eventDate, String.valueOf(eventTimestamp), accX, accY, accZ, latitude, longitude,
-                    accuracy, accMagnitude, magX, magY, magZ, magMagnitude, String.valueOf(location),city);
+                    accuracy, accMagnitude, magX, magY, magZ, magMagnitude, String.valueOf(location));
 
 
         }

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Receives location readings from the smart phone and send them to the classifier.
+ * Receives location readings from the smartphone and sends them to the classifier.
  */
 public class LocationListener extends LocationCallback{
 
