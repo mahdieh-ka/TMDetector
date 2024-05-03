@@ -100,7 +100,7 @@ class Classifier {
         return transportModeId;
     }
     /**
-     * Uses the ML model to generate the list of probabilities.
+     * Uses the Random Forest model to generate the list of probabilities.
      */
 
     static void loadModelAsync() {

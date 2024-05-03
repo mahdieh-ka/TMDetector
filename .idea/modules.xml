@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TMDetector.iml" filepath="$PROJECT_DIR$/.idea/modules/TMDetector.iml" group="TMDetector" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="TMDetector/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TMDetector.iml" filepath="$PROJECT_DIR$/.idea/modules/TMDetector.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TMDetector.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TMDetector.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TMDetector.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TMDetector.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TMDetector.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TMDetector.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/TMDetector.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/TMDetector.app.unitTest.iml" />
     </modules>
   </component>
 </project>

@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f559c912a31fbd0c9340608f61b9bb59/jetified-firebase-crashlytics-18.2.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f559c912a31fbd0c9340608f61b9bb59/jetified-firebase-crashlytics-18.2.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/f559c912a31fbd0c9340608f61b9bb59/jetified-firebase-crashlytics-18.2.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.firebase/firebase-crashlytics/18.2.1/d0fb7d0be0fe717617a8d910e9688e3b5a80f33f/firebase-crashlytics-18.2.1-javadoc.jar!/" />
