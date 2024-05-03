@@ -13,8 +13,7 @@ Utilizes a pre-trained Random Forest classifier to detect the user’s current m
 4. Extraction Module
 This module focuses on visualizing and analyzing sensor data to extract an efficient set of features that can be used to improve the classifier's performance, particularly the magnetometer sensor. 
 
-
-
+The app is designed for scientific use case.
 
 
 
