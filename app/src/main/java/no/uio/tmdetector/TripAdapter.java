@@ -24,7 +24,7 @@ import static no.uio.tmdetector.MainActivity.rawDataDB;
 
 
 /**
- * Recycler view adapter. List of trips.
+ * Recycler view adapter. List of trips fetched from Firebase.
  */
 public class TripAdapter extends RecyclerView.Adapter<TripAdapter.TripViewHolder> {
 

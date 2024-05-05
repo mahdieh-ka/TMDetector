@@ -28,6 +28,10 @@ import android.widget.ToggleButton;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Detection activity is an important part of detection module. It starts running the service in the background
+ * and stop the background service with start and stop toggle button.
+ */
 public class DetectionActivity extends AppCompatActivity implements SingleChoiceDialogFragment.SingleChoiceListener  {
     private static final String TAG = DetectionActivity.class.getSimpleName() ;
     private Intent backgroundServiceIntent;

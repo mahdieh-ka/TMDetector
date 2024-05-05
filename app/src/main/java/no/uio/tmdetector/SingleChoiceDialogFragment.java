@@ -9,7 +9,9 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
+/**
+ * This fragment is used to choose the current mode bu the user.
+ */
 public class SingleChoiceDialogFragment extends DialogFragment {
 
     static  int position =0; //default selected mode
@@ -82,49 +84,5 @@ public class SingleChoiceDialogFragment extends DialogFragment {
 
     }
 
-    /*public int setPosition(String lastUsedMode) {
-        int position = 0;
 
-        switch (lastUsedMode) {
-            case "still":
-                position = 0;
-                break;
-            case "bike":
-                position = 1;
-                break;
-            case "walk":
-                position = 2;
-                break;
-            case "run":
-                position = 3;
-                break;
-            case "car":
-                position = 4;
-                break;
-            case "train":
-                position = 5;
-                break;
-            case "tram":
-                position = 6;
-                break;
-            case "subway":
-                position = 7;
-                break;
-            case "ferry":
-                position = 8;
-                break;
-            case "plain":
-                position = 9;
-                break;
-            case "bus":
-                position = 10;
-                break;
-            case "other":
-                position = 11;
-                break;
-            default:
-                break;
-        }
-        return position;
-    }*/
 }

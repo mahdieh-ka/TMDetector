@@ -13,6 +13,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * To show the list of probabilities detected by the classifier. A part of the detection module.
+ *
+ */
 public class ClassifierResults extends AppCompatActivity {
 
 

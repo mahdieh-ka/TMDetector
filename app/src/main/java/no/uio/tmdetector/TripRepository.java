@@ -15,6 +15,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Save and fetch trips on Firebase
+ */
 class TripRepository {
     static String docPath = Utility.getDeviceName();
     private static final String TAG = "TripRepository";

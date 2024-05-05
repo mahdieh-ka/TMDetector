@@ -24,6 +24,9 @@ import com.google.firebase.storage.UploadTask;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Upload the local DB to the Firebase storage
+ */
 public class UploadDb extends AppCompatActivity {
     EditText dbName;
     Button uploadDb;

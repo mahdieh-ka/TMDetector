@@ -5,7 +5,10 @@ import android.location.Location;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
-
+/**
+ * Segment class encapsulate the segment features and methods. A segment is list of sensor readings
+ * with fixed size.
+ */
 class Segment {
     private int index;
     private long startTime;

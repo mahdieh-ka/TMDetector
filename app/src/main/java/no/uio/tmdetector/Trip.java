@@ -11,7 +11,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Trip class encapsulate the trip features and methods. A trip contains various legs with various trasnport modes.
+ * The start, stop and actual model of a trip are annotated by a user during data collection.
+ */
     class Trip {
     private String id;
     private Date startDate;

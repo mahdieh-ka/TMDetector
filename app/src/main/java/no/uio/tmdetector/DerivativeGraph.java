@@ -22,6 +22,10 @@ import java.util.List;
 import java.util.Map;
 import static no.uio.tmdetector.MainActivity.rawDataDB;
 
+/**
+ * Part of collection module to visualize the sensor readings and initially learn the thresholds.
+ * According to these values we defined the features for the classifier. A part of the feature extraction module.
+ */
 public class DerivativeGraph extends AppCompatActivity {
 
     public LineChart chartRawMag, chartDerivMag, chartAvgFilteredMag , chartAvgMag;

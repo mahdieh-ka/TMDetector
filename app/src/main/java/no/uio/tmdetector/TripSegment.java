@@ -18,6 +18,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+
+/**
+ * Segmentize the sensor readings with a fixed window size
+ */
 class TripSegment {
     private static final String TAG = TripSegment.class.getSimpleName();
     private static TripSegment instance;

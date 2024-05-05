@@ -12,7 +12,9 @@ import android.widget.TextView;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
-
+/**
+ * To show list of legs. Each leg represnt one single mode.
+ */
 public class ListOfLegs extends AppCompatActivity {
 
     private static final String TAG = ListOfLegs.class.getSimpleName();

@@ -6,7 +6,9 @@ import android.util.Log;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-
+/**
+ * This saves the sensor reading to the smartphone's local database using SQLite.
+ */
 public class BackgroundTripStorage extends AsyncTask<Void, Void, Boolean> {
     private static BackgroundTripStorage instance;
     private static final String TAG = BackgroundTripStorage.class.getSimpleName();

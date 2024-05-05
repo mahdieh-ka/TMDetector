@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.BatteryManager;
 import android.util.Log;
 import android.widget.Toast;
-
+/**
+ * This class reads the battery status from the smartphone OS and present it for the scientific use.
+ */
 class BatteryMonitor extends BroadcastReceiver {
     private static final String TAG = BatteryMonitor.class.getSimpleName();
     float batteryPct;

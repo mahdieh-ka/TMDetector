@@ -71,7 +71,12 @@ public class TripService extends Service {
 
         return START_STICKY;
     }
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(tripBroadcastReceiver);  // Unregister the receiver
+        Log.i(TAG, "onDestroy");
+    }
     /**
      * Creates service notification (required by Android for foreground services)
      */
