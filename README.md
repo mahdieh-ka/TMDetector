@@ -15,7 +15,7 @@ permissions allow (for license restrictions).
 3. Visualization Module:
 This module focuses on visualizing and analyzing sensor data to extract an efficient set of features that can be used to improve the classifier's performance, particularly the magnetometer sensor.
 
-The app is designed for scientific use cases.
+"The app is designed for scientific use cases".
 
 
 
