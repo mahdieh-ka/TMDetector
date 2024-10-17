@@ -38,6 +38,7 @@ class Classifier {
     private static String TAG = "Classifier";
     private List<Float> rawAccelerationsSegment;
     private List<Location> rawLocationsSegment;
+    private List<Float> rawMagneticsSegment;
     private Map<String, Float> features;
     @SuppressLint("StaticFieldLeak")
     private static String modelName = "randomForest.pmml.ser";
@@ -62,6 +63,10 @@ class Classifier {
 
     void addAcceleration(List<Float> accelerations) {
         rawAccelerationsSegment = accelerations;
+    }
+
+    void addMagnetics(List<Float> magnetics){
+        rawMagneticsSegment = magnetics;
     }
 
 
@@ -202,6 +207,7 @@ class Classifier {
     private void calculateFeatures() {
         // used to calculate accelsBelowFilter feature
         final float accelerationFilter = 0.3f;
+        final float magneticFilter = 250f;
         float distance = 0f;
 
         List<Float> speeds = new ArrayList<>();
@@ -288,13 +294,37 @@ class Classifier {
         features.put("stdDevAcc", Utility.getStandardDeviation(accuracies));
         features.put("gpsTimeMean", Utility.getMean(gpsTimeDiffs));
 
+        features.put("avgMag", Utility.getMean(rawMagneticsSegment));
+        features.put("minMag", Utility.getMin(rawMagneticsSegment));
+        features.put("maxMag", Utility.getMax(rawMagneticsSegment));
+        features.put("stdDevMag", Utility.getStandardDeviation(rawMagneticsSegment));
+
+
+        List<Float> filteredMagnetics = Utility.removeValuesNotInInterval(rawMagneticsSegment, 20f, 50f);
+        features.put("magBetw_20_50", (float) (filteredMagnetics.size() * 100) / (float) rawMagneticsSegment.size());
+
+        filteredMagnetics = Utility.removeValuesNotInInterval(rawMagneticsSegment, 50f, 70f);
+        features.put("magBetw_50_70", (float) (filteredMagnetics.size() * 100) / (float) rawMagneticsSegment.size());
+
+        filteredMagnetics = Utility.removeValuesNotInInterval(rawMagneticsSegment, 70f, 120f);
+        features.put("magBetw_70_120", (float) (filteredMagnetics.size() * 100) / (float) rawMagneticsSegment.size());
+
+        filteredMagnetics = Utility.removeValuesNotInInterval(rawMagneticsSegment, 120f, 250f);
+        features.put("magBetw_120_250", (float) (filteredMagnetics.size() * 100) / (float) rawMagneticsSegment.size());
+
+        filteredMagnetics = Utility.removeValuesBelow(rawMagneticsSegment, magneticFilter);
+        features.put("magAbove_250", (float) (filteredMagnetics.size() * 100) / (float) rawMagneticsSegment.size());
+        
+
         if(rawLocationsSegment != null) { rawLocationsSegment.clear(); }
-        rawAccelerationsSegment.clear();
+        if(rawAccelerationsSegment != null) {rawAccelerationsSegment.clear();}
+        if (rawMagneticsSegment != null) {rawMagneticsSegment.clear();}
     }
 
     private void initializeValues()     {
         rawAccelerationsSegment = new ArrayList<>();
         rawLocationsSegment = new ArrayList<>();
+        rawMagneticsSegment = new ArrayList<>();
         features = new HashMap<String, Float>() {{
             put("avgAccel", (float) 0);
             put("minAccel", (float) 0);
@@ -319,6 +349,16 @@ class Classifier {
             put("OS", (float) 0);
             put("distance", (float) 0); // in meters
             put("estimatedSpeed", (float) 1);
+            put("avgMag", (float) 0);
+            put("minMag", (float) 0);
+            put("maxMag", (float) 0);
+            put("stdDevMag", (float) 0);
+            put("magBetw_20_50", (float) 0);
+            put("magBetw_50_70", (float) 0);
+            put("magBetw_70_120", (float) 0);
+            put("magBetw_120_250", (float) 0);
+            put("magAbove_250", (float) 0);
+
         }};
     }
 
